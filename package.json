@@ -1,9 +1,9 @@
 {
-    "name": "vscode-clangd",
-    "displayName": "clangd",
+    "name": "vscode-clangd-gea-embedded",
+    "displayName": "clangd-gea-embedded",
     "description": "C/C++ completion, navigation, and insights",
     "version": "0.1.28",
-    "publisher": "llvm-vs-code-extensions",
+    "publisher": "gea-embedded",
     "license": "MIT",
     "homepage": "https://clangd.llvm.org/",
     "icon": "icon.png",
