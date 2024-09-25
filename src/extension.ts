@@ -1,12 +1,18 @@
 import * as vscode from 'vscode';
 
+import {ClangdExtension} from '../api/vscode-clangd';
+
+import {ClangdExtensionImpl} from './api';
 import {ClangdContext} from './clangd-context';
+
+let apiInstance: ClangdExtensionImpl|undefined;
 
 /**
  *  This method is called when the extension is activated. The extension is
  *  activated the very first time a command is executed.
  */
-export async function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext):
+    Promise<ClangdExtension> {
   const outputChannel = vscode.window.createOutputChannel('clangd');
   context.subscriptions.push(outputChannel);
 
@@ -30,6 +36,9 @@ export async function activate(context: vscode.ExtensionContext) {
         }
         await clangdContext.dispose();
         await clangdContext.activate(context.globalStoragePath, outputChannel);
+        if (apiInstance) {
+          apiInstance.client = clangdContext.client;
+        }
       }));
 
   await clangdContext.activate(context.globalStoragePath, outputChannel);
@@ -68,4 +77,7 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     }, 5000);
   }
+
+  apiInstance = new ClangdExtensionImpl(clangdContext.client);
+  return apiInstance;
 }
