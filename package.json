@@ -2,7 +2,7 @@
     "name": "vscode-clangd-gea-embedded",
     "displayName": "clangd-gea-embedded",
     "description": "C/C++ completion, navigation, and insights",
-    "version": "0.1.30",
+    "version": "0.1.31",
     "publisher": "gea-embedded",
     "repository": {
         "type": "git",
